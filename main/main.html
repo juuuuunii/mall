@@ -5,173 +5,237 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>쇼핑몰 입니다.</title>
+  <!--폰트어썸-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
     crossorigin="anonymous">
+  <!--w3-->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--css-->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/main.css">
+  <!--파이어베이스-->
   <script defer src="/__/firebase/5.5.5/firebase-app.js"></script>
   <script defer src="/__/firebase/5.5.5/firebase-auth.js"></script>
   <script defer src="/__/firebase/5.5.5/firebase-database.js"></script>
   <script defer src="/__/firebase/5.5.5/firebase-storage.js"></script>
   <script defer src="/__/firebase/init.js"></script>
+  <!--제이쿼리-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--부트스트랩-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!--로딩-->
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
 
-<body>
-  <header>
-    <div class="wrap clear">
-      <ul class="hd_lt">
-        <li>ENGLISH <span class="arrow_down">∨</span></li>
-        <li>COUNTRY <span class="arrow_down">∨</span></li>
-        <li>FREE SHIPPING FOR ALL ORDERS OF $150</li>
-      </ul>
-      <ul class="hd_rt">
-        <li>FAQS</li>
-        <li>CONTACT US</li>
-        <li>
-          <span class="fa fa-envelope-o"></span>
-          NEWSLETTER
-        </li>
-        <li>
-          <span class="fa fa-facebook"></span>
-          <span class="fa fa-twitter"></span>
-          <span class="fa fa-google-plus"></span>
-          <span class="fa fa-facebook"></span>
-          <span class="fa fa-envelope"></span>
-          <span class="fa fa-instagram"></span>
-          <span class="fa fa-pinterest"></span>
-        </li>
-      </ul>
-    </div>
-  </header>
-  <section class="tops wrap clear">
-    <!-- div.logo+ul.searchs>li*3^ul.logins>li*4 -->
-    <div class="logos">
-      <img src="../img/main/logo.svg" class="logo img">
-    </div>
-    <ul class="searchs">
+<div class="loader">
+  <div>
+    <span class="fa fa-spinner fa-spin"></span>
+  </div>
+</div>
+<header>
+  <div class="wrap clear">
+    <ul class="hd_lt">
+      <li>ENGLISH <span class="arrow_down">∨</span></li>
+      <li>COUNTRY <span class="arrow_down">∨</span></li>
+      <li>FREE SHIPPING FOR ALL ORDERS OF $150</li>
+    </ul>
+    <ul class="hd_rt">
+      <li>FAQS</li>
+      <li>CONTACT US</li>
       <li>
-        <input type="text" class="w3-input" name="search" placeholder="Search for products">
+        <span class="fa fa-envelope-o"></span>
+        NEWSLETTER
       </li>
       <li>
-        <span class="hand">SELECT CATEGORY <span class="arrow_down">∨</span></span>
-        <ul class="search_catelist">
-          <li>Uncategorized</li>
-          <li>Clocks</li>
-          <li>Lighting</li>
-          <li>Furniture</li>
-          <li>Accessories</li>
-          <li>Cooking</li>
-          <li>Toys</li>
-        </ul>
-      </li>
-      <li>
-        <span class="fa fa-search"></span>
+        <span class="fa fa-facebook"></span>
+        <span class="fa fa-twitter"></span>
+        <span class="fa fa-google-plus"></span>
+        <span class="fa fa-facebook"></span>
+        <span class="fa fa-envelope"></span>
+        <span class="fa fa-instagram"></span>
+        <span class="fa fa-pinterest"></span>
       </li>
     </ul>
-    <ul class="logins">
-      <li>$0.00</li>
-      <li>
-        <span class="fas fa-shopping-basket"></span>
-        <span class="w3-badge">0</span>
-      </li>
-      <li><span class="fa fa-heart-o"></span></li>
-      <li>LOGIN/REGISTER</li>
-    </ul>
-  </section>
-  <section class="mains">
-    <ul class="navs wrap clear">
-      <li class="cate_top">
-        <span class="fa fa-bars"></span>
-        <span>BROWSE CATEGORIES</span>
-        <span class="arrow_down">∨</span>
-      </li>
-      <li class="menu">
-        <ul>
-          <li class="txt_green">
-            HOME <span class="arrow_down">∨</span>
-            <div id="modal0" class="menu_modal clear"></div>
-          </li>
-          <li>
-            SHOP <span class="arrow_down">∨</span>
-            <div id="modal1" class="menu_modal clear"></div>
-          </li>
-          <li>
-            BLOG <span class="arrow_down">∨</span>
-            <div id="modal2" class="menu_modal clear">
-              <div class="blogs"></div>
-              <div class="recents">
-                <div class="title">RECENT POSTS</div>
-              </div>
+  </div>
+</header>
+<section class="tops wrap clear">
+  <!-- div.logo+ul.searchs>li*3^ul.logins>li*4 -->
+  <div class="logos">
+    <img src="../img/main/logo.svg" class="logo img">
+  </div>
+  <ul class="searchs">
+    <li>
+      <input type="text" class="w3-input" name="search" placeholder="Search for products">
+    </li>
+    <li>
+      <span class="hand">SELECT CATEGORY <span class="arrow_down">∨</span></span>
+      <ul class="search_catelist">
+        <li>Uncategorized</li>
+        <li>Clocks</li>
+        <li>Lighting</li>
+        <li>Furniture</li>
+        <li>Accessories</li>
+        <li>Cooking</li>
+        <li>Toys</li>
+      </ul>
+    </li>
+    <li>
+      <span class="fa fa-search"></span>
+    </li>
+  </ul>
+  <ul class="logins">
+    <li>$0.00</li>
+    <li>
+      <span class="fas fa-shopping-basket"></span>
+      <span class="w3-badge">0</span>
+    </li>
+    <li><span class="fa fa-heart-o"></span></li>
+    <li>LOGIN/REGISTER</li>
+  </ul>
+</section>
+<section class="mains">
+  <ul class="navs wrap clear">
+    <li class="cate_top">
+      <span class="fa fa-bars"></span>
+      <span>BROWSE CATEGORIES</span>
+      <span class="arrow_down">∨</span>
+    </li>
+    <li class="menu">
+      <ul>
+        <li class="txt_green">
+          HOME <span class="arrow_down">∨</span>
+          <div id="modal0" class="menu_modal clear"></div>
+        </li>
+        <li>
+          SHOP <span class="arrow_down">∨</span>
+          <div id="modal1" class="menu_modal clear"></div>
+        </li>
+        <li>
+          BLOG <span class="arrow_down">∨</span>
+          <div id="modal2" class="menu_modal clear">
+            <div class="blogs"></div>
+            <div class="recents">
+              <div class="title">RECENT POSTS</div>
             </div>
-          </li>
-          <li>
-            PAGES <span class="arrow_down">∨</span>
-            <div id="modal3" class="menu_modal">3번</div>
-          </li>
-          <li>
-            ELEMENTS <span class="arrow_down">∨</span>
-            <div id="modal4" class="menu_modal">4번</div>
-          </li>
-          <li>BUY</li>
-        </ul>
+          </div>
+        </li>
+        <li>
+          PAGES <span class="arrow_down">∨</span>
+          <div id="modal3" class="menu_modal">3번</div>
+        </li>
+        <li>
+          ELEMENTS <span class="arrow_down">∨</span>
+          <div id="modal4" class="menu_modal">4번</div>
+        </li>
+        <li>BUY</li>
+      </ul>
+    </li>
+    <li class="etc">
+      <span class="txt_green">SPECIAL OFFER</span>
+      <span>|</span>
+      <span>PURCHASE THEME</span>
+    </li>
+  </ul>
+</section>
+
+
+
+
+
+<section class="banners wrap">
+  <div class="cates clear">
+    <ul class="cate">
+
+    </ul>
+    <ul class="banner">
+      <li><img src="../img/main/slider-main-demo-1.jpg" class="ban_img">
+        <div class="ban_tit">Simple-</div>
+        <div class="ban_tit">Rock Chair</div>
+        <div class="ban_cont">Semper vulputate aliquam aurae condimentum quisque gravida fusce convallis arcu cum at.</div>
+        <div class="ban_price">$199.00</div>
       </li>
-      <li class="etc">
-        <span class="txt_green">SPECIAL OFFER</span>
-        <span>|</span>
-        <span>PURCHASE THEME</span>
+      <li><img src="../img/main/slider-main-demo-2.jpg" class="ban_img">
+        <div class="ban_tit">Eames-</div>
+        <div class="ban_tit">Side Chair</div>
+        <div class="ban_cont">Semper vulputate aliquam aurae condimentum quisque gravida fusce convallis arcu cum at.</div>
+        <div class="clear ban_color">
+          <div>color : </div>
+          <div class="icon w3-teal"></div>
+          <div class="icon w3-red"></div>
+          <div class="icon w3-orange"></div>
+        </div>
+        <div class="ban_price">only $99.00</div>
+      </li>
+      <li><img src="../img/main/slider-main-demo-3.jpg" class="ban_img">
+        <div class="ban_stit">CAPPELLINI</div>
+        <div class="ban_tit">Wooden</div>
+        <div class="ban_tit">Lounge Chair</div>
+        <div class="ban_cont">Semper vulputate aliquam aurae condimentum quisque gravida fusce convallis arcu cum at.</div>
+        <div class="ban_price">$999.00</div>
+    </ul>
+    <div class="rt_arrow fa fa-angle-right"></div>
+
+  </div>
+
+</section>
+
+
+<section class="featured wrap">
+  <h5>WOODMART COLLECTIONS</h5>
+  <h3>FEATURED CATEGORIES</h3>
+  <h5>WoodMart is a powerful eCommerce theme for WordPress.</h5>
+
+  <div class="featured_items clear">
+    <ul class="featured_lt">
+      <li class="featured_item">
+        <img src="../img/main/cat-23-860x860.jpg" class="img">
+        <div>
+          <h3>FURNITURE</h3>
+          <h5>22 product</h5>
+        </div>
       </li>
     </ul>
-  </section>
+    <ul class="featured_rt">
+      <li class="featured_item">
+        <img src="../img/main/cat-klock-430x430.jpg" class="img">
+        <div>
+          <h3>CLCOK</h3>
+          <h5>12 product</h5>
+        </div>
+      </li>
+      <li class="featured_item">
+        <img src="../img/main/cat-clock-3-430x430.jpg" class="img">
+        <div>
+          <h3>ACCESSORIS</h3>
+          <h5>12 product</h5>
+        </div>
+      </li>
+      <li class="featured_item">
+        <img src="../img/main/light-cat-5-430x430.jpg" class="img">
+        <div>
+          <h3>LIGHING</h3>
+          <h5>16 product</h5>
+        </div>
+      </li>
+      <li class="featured_item">
+        <img src="../img/main/Toys-cat-1-430x430.jpg" class="img">
+        <div>
+          <h3>TOYS</h3>
+          <h5>12 product</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</section>
 
 
-
-
-
-  <section class="banners wrap">
-    <div class="cates clear">
-      <ul class="cate">
-
-      </ul>
-      <ul class="banner">
-        <li><img src="../img/main/slider-main-demo-1.jpg" class="ban_img">
-          <div class="ban_tit">Simple-</div>
-          <div class="ban_tit">Rock Chair</div>
-          <div class="ban_cont">Semper vulputate aliquam aurae condimentum quisque gravida fusce convallis arcu cum at.</div>
-          <div class="ban_price">$199.00</div>
-        </li>
-        <li><img src="../img/main/slider-main-demo-2.jpg" class="ban_img">
-          <div class="ban_tit">Eames-</div>
-          <div class="ban_tit">Side Chair</div>
-          <div class="ban_cont">Semper vulputate aliquam aurae condimentum quisque gravida fusce convallis arcu cum at.</div>
-          <div class="clear ban_color">
-            <div>color : </div>
-            <div class="icon w3-teal"></div>
-            <div class="icon w3-red"></div>
-            <div class="icon w3-orange"></div>
-          </div>
-          <div class="ban_price">only $99.00</div>
-        </li>
-        <li><img src="../img/main/slider-main-demo-3.jpg" class="ban_img">
-          <div class="ban_stit">CAPPELLINI</div>
-          <div class="ban_tit">Wooden</div>
-          <div class="ban_tit">Lounge Chair</div>
-          <div class="ban_cont">Semper vulputate aliquam aurae condimentum quisque gravida fusce convallis arcu cum at.</div>
-          <div class="ban_price">$999.00</div>
-      </ul>
-      <div class="rt_arrow fa fa-angle-right"></div>
-
-    </div>
-    
-  </section>
-  <footer>
-  </footer>
-  <script defer src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
-  <script defer src="../js/ajax.js"></script>
-  <script defer src="../js/main.js"></script>
+<footer>
+</footer>
+<script defer src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+<script defer src="../js/ajax.js"></script>
+<script defer src="../js/main.js"></script>
 </body>
 
 </html>
