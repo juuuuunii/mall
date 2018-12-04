@@ -579,6 +579,92 @@ function resultFn(data) {
 }
 
 /***** 하단 배너 *****/
+/*
+clone 적용시
+
+function fbanInit() {
+	var fNum = 0;
+	$(window).resize(function() {}).trigger("resize");
+	$(".fban").append($(".fban > li").eq(0).clone());
+	//clone: 복제
+	//0번째를 한 세트를 더 만들어 0번-1번-0번인 상태로 만들어 놓은 것
+	$(".fban > li").each(function(i) {
+		$(this).css({"left": i*100 +"%"});
+	});
+	//////////////////// 여기까지가 최초의 상태
+	$("#fban_lt").click(function() {
+		$(".fban").stop().animate({"left": (-fNum)*100 +"%"}, 300, function() {
+			if(fNum == $(".fban > li").length()-1) {
+				fNum = 1; //3-1= "2". 2번째 있는 세트의 fNum을 1로 만들어준다.
+				$(".fban").css({"left":0});
+			}
+		});
+	});
+	$("#fban_rt").click(function() {});
+	$("#fban_pager > i").click(function() {});
+
+	
+}
+fbanInit();
+*/
+var fNum = 0; //현재 위치에 대한 인덱스값
+var fLen = fLen = $(".fban > li").length - 1; //마지막 인덱스값(배너가 5개라면 0,1,2,3,4 -> "4")
+var duration = 500; //animate 속도
 $(window).resize(function() {
 	//본 작업을 진행하는 이유는 absolute 되어있는 객체의 높이를 계산하기 위함
-}).trigger("resize");
+	$(".fban").height($(".fban > li").eq(fNum).height());
+	}).trigger("resize");
+$(".fban > li").each(function(i) { //최초 한 번 실행
+	//each문은 i를 쓸 수 있음
+	$(this).css({"left": i*100 +"%"}); //0번은 0% 1번은 100%가 됨.
+	$('<i class="fa-circle"></i>').appendTo("#fban_pager").click(function(){
+		var iNum = $(this).index();
+		if(fNum < iNum) {
+			$(".fban > li").eq(fNum + 1).hide();
+			$(".fban > li").eq(iNum).show().css({"left":"100%"});
+			fNum = iNum;
+			fbanAni("-100%")
+		}
+		else if(fNum > iNum) {
+			$(".fban > li").eq(fNum - 1).hide();
+			$(".fban > li").eq(iNum).show().css({"left":"-100%"});
+			fNum = iNum;
+			fbanAni("100%")
+		}
+	});
+});
+fbanPos();
+function fbanAni(val) {
+	$(".fban > li").eq(fNum).css({"animation-name":"fbanAni", "animation-duration":duration*0.001+"s"});
+		$(".fban").stop().animate({"left":val}, duration, fbanPos);
+}
+function fbanPos() {
+	$(".fban").height($(".fban > li").eq(fNum).height());
+	$("#fban_pager > i").removeClass("fas").addClass("far");
+	$("#fban_pager > i").eq(fNum).removeClass("far").addClass("fas");
+	$(".fban > li").hide().css({"animation-name":""});
+	$(".fban").css({"left":0});
+	$(".fban > li").eq(fNum).show().css({"left":0});
+	if(fNum == 0) {		
+		$(".fban > li").eq(fLen).show().css({"left":"-100%"});
+		$(".fban > li").eq(1).show().css({"left":"100%"});		
+	}
+	else if(fNum == fLen) { //배너의 개수가 5개인 경우: 4=4
+		$(".fban > li").eq(fNum-1).show().css({"left":"-100%"});
+		$(".fban > li").eq(0).show().css({"left":"100%"});
+	}
+	else {
+		$(".fban > li").eq(fNum-1).show().css({"left":"-100%"});
+		$(".fban > li").eq(fNum+1).show().css({"left":"100%"});
+	}
+}
+$("#fban_lt").click(function(){
+	if(fNum == fLen) fNum = 0;
+	else fNum++;
+	fbanAni("-100%")
+});
+$("#fban_rt").click(function(){
+	if(fNum == 0) fNum = fLen;
+	else fNum--;
+	fbanAni("100%");
+});
